@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#Variables for home dir and exam dir inside home
+user_dir=$HOME
+exam_dir="$user_dir/exam_directory"
+
+# Check if the exam_directory exists
+if [ -d "$exam_dir" ]; then
+	#print that its exist
+    echo "Directory '$exam_dir' exists."
+
+	#check if there are files inside
+    if [ "$(ls -A "$exam_dir")" ]; then
+    	#if yes inform the user
+        echo "Directory '$exam_dir' contains the following files:"
+        #then list them
+        ls -lh "$exam_dir"
+    
+    else
+    	#if not inform the user
+        echo "Directory '$exam_dir' is empty."
+
+        # Then create them
+        echo "Creating three empty text files inside '$exam_dir'..."
+        touch "$exam_dir/file1.txt"
+        touch "$exam_dir/file2.txt"
+        touch "$exam_dir/file3.txt"
+        echo "Done."
+    fi
+#if there is no dir 
+else
+	#inform the user
+    echo "Directory '$exam_dir' does not exist."
+
+    # inform the user and create the exam_directory 
+    echo "Creating directory '$exam_dir' and three empty text files inside it..."
+    mkdir "$exam_dir"
+    #create the three files inside the dir
+    touch "$exam_dir/file1.txt"
+    touch "$exam_dir/file2.txt"
+    touch "$exam_dir/file3.txt"
+    echo "Done."
+fi
